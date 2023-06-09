@@ -15,13 +15,10 @@
  * @returns novo array, somente com os valores
  */
 function flatten(array) {
-  // implemente o codigo aqui
-  //
-  return array.map((element) => {
-    console.log(element);
-    if (Array.isArray(element)) return flatten(element);
-    else return element;
-  });
+  return [...array].reduce((pV, cV) => {
+    if (Array.isArray(cV)) return [...pV, ...flatten([...cV])];
+    else return [...pV, cV];
+  }, []);
 }
 
 module.exports = flatten;
